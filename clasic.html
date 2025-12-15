@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartas de Navidad Familiares</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #1b5e20, #0b3d2e 60%, #062b1f);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Password screen */
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #1b5e20, #0b3d2e 60%, #062b1f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lock-card {
+      background: linear-gradient(180deg, #fffdf7, #f7efe3);
+      color: #2c2c2c;
+      padding: 40px 35px;
+      border-radius: 22px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    }
+
+    .lock-card h2 {
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+      color: #b22222;
+    }
+
+    .lock-card p { font-size: 0.95rem; }
+
+    .lock-card input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .lock-card button {
+      margin-top: 18px;
+      padding: 12px 20px;
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      background: #b22222;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .lock-card button:hover { background: #8b1a1a; }
+
+    .error {
+      color: #b22222;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Snow */
+    .snow { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .snow span {
+      position: absolute; top: -10px; width: 6px; height: 6px;
+      background: white; border-radius: 50%; opacity: 0.8;
+      animation: snowFall linear infinite;
+    }
+    @keyframes snowFall { to { transform: translateY(110vh); } }
+
+    header {
+      position: relative; z-index: 1; text-align: center;
+      padding: 70px 20px 40px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; margin: 0;
+    }
+
+    header p { margin-top: 12px; font-size: 1.15rem; opacity: 0.9; }
+
+    .divider {
+      width: 120px; height: 3px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+      margin: 25px auto 0;
+    }
+
+    .names {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 26px;
+      padding: 50px 30px 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .name-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      position: relative; overflow: hidden;
+    }
+
+    .name-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+    }
+
+    .name-card h2 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+    }
+
+    .modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      justify-content: center; align-items: center;
+      padding: 20px; z-index: 1000;
+    }
+
+    .modal-content {
+      background: linear-gradient(180deg, #fffdf7, #f7efe3);
+      color: #2c2c2c;
+      max-width: 650px; width: 100%;
+      border-radius: 22px;
+      padding: 40px 35px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+      color: #b22222; font-size: 1.9rem;
+    }
+
+    .modal-content p {
+      white-space: pre-line; font-size: 1.05rem; line-height: 1.7;
+    }
+
+    .close {
+      position: absolute; top: 18px; right: 22px;
+      font-size: 1.6rem; cursor: pointer; color: #777;
+    }
+
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 30px 20px 40px;
+      font-size: 0.95rem; opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Password Screen -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <h2>Cartas de Navidad</h2>
+      <p>Escribe la contraseña para entrar</p>
+      <input type="password" id="passwordInput" placeholder="Contraseña" />
+      <button onclick="checkPassword()">Entrar</button>
+      <div class="error" id="error">Contraseña incorrecta</div>
+    </div>
+  </div>
+
+  <div class="snow">
+    <span style="left:5%;animation-duration:12s"></span>
+    <span style="left:15%;animation-duration:9s"></span>
+    <span style="left:25%;animation-duration:14s"></span>
+    <span style="left:35%;animation-duration:10s"></span>
+    <span style="left:45%;animation-duration:13s"></span>
+    <span style="left:55%;animation-duration:11s"></span>
+    <span style="left:65%;animation-duration:15s"></span>
+    <span style="left:75%;animation-duration:9s"></span>
+    <span style="left:85%;animation-duration:12s"></span>
+    <span style="left:95%;animation-duration:14s"></span>
+  </div>
+
+  <header>
+    <h1>Cartas de Navidad</h1>
+    <p>Un pequeño detalle lleno de amor y cariño</p>
+    <div class="divider"></div>
+  </header>
+
+  <section class="names">
+    <div class="name-card" onclick="openLetter('Mami')"><h2>Mami</h2></div>
+    <div class="name-card" onclick="openLetter('Papi')"><h2>Papi</h2></div>
+    <div class="name-card" onclick="openLetter('Daniela')"><h2>Daniela</h2></div>
+    <div class="name-card" onclick="openLetter('Daniel')"><h2>Daniel</h2></div>
+    <div class="name-card" onclick="openLetter('Abuelito')"><h2>Abuelito</h2></div>
+    <div class="name-card" onclick="openLetter('Consue')"><h2>Consue</h2></div>
+    <div class="name-card" onclick="openLetter('Jose')"><h2>Jose</h2></div>
+    <div class="name-card" onclick="openLetter('Lina')"><h2>Lina</h2></div>
+    <div class="name-card" onclick="openLetter('Juli')"><h2>Juli</h2></div>
+    <div class="name-card" onclick="openLetter('Herbi')"><h2>Herbi</h2></div>
+    <div class="name-card" onclick="openLetter('Pablo')"><h2>Pablo</h2></div>
+    <div class="name-card" onclick="openLetter('Pao')"><h2>Pao</h2></div>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLetter()">&times;</span>
+      <h3 id="letter-title"></h3>
+      <p id="letter-body"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Hecho con amor esta Navidad</p>
+  </footer>
+
+  <script>
+    const PASSWORD = "ContraseñaNavidad20";
+
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      if (input === PASSWORD) {
+        document.getElementById('lockScreen').style.display = 'none';
+      } else {
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+
+    const letters = {
+      Mami: "Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas. Te quiero mucho.",
+      Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por estar siempre conmigo y por ayudarme. Me gusta pasar tiempo contigo. Te quiero mucho.",
+      Daniela: "Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos. Espero que la pases muy bien.",
+      Daniel: "Querido Daniel,\n\nFeliz Navidad. Espero que la pases muy bien y que el próximo año sea bonito para ti.",
+      Abuelito: "Querido Abuelito,\n\nFeliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta mucho estar contigo.",
+      Consue: "Querida Consue,\n\nFeliz Navidad. Gracias por ser tan amable conmigo. Espero que tengas un día muy bonito.",
+      Jose: "Querido Jose,\n\nFeliz Navidad. Espero que estés muy bien y que tengas un año lleno de cosas buenas.",
+      Lina: "Querida Lina,\n\nFeliz Navidad. Espero que sonrías mucho y que la pases muy bonito con la familia.",
+      Juli: "Querida Juli,\n\nFeliz Navidad. Gracias por ser tan divertida. Espero que la pases genial.",
+      Herbi: "Querido Herbi,\n\nFeliz Navidad. Te deseo momentos felices y un año muy bueno.",
+      Pablo: "Querido Pablo,\n\nFeliz Navidad. Espero que te diviertas mucho y que todo te vaya bien.",
+      Pao: "Querida Pao,\n\nFeliz Navidad. Espero que tengas días felices y momentos lindos con la familia."
+    };
+
+    function openLetter(name) {
+      document.getElementById('letter-title').innerText = `Carta de Navidad para ${name}`;
+      document.getElementById('letter-body').innerText = letters[name];
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeLetter() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
