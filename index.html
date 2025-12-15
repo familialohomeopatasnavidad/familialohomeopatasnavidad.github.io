@@ -11,47 +11,44 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #1b5e20, #0b3d2e 60%, #062b1f);
-      color: #ffffff;
+      background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
+      color: #0f2a44;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Password screen */
+    /* Lock screen */
     .lock-screen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top, #1b5e20, #0b3d2e 60%, #062b1f);
+      background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2000;
+      z-index: 3000;
     }
 
     .lock-card {
-      background: linear-gradient(180deg, #fffdf7, #f7efe3);
-      color: #2c2c2c;
+      background: #ffffffee;
       padding: 40px 35px;
-      border-radius: 22px;
+      border-radius: 24px;
       width: 100%;
       max-width: 380px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     }
 
     .lock-card h2 {
       margin-top: 0;
       font-family: 'Playfair Display', serif;
-      color: #b22222;
+      color: #2b6cb0;
     }
-
-    .lock-card p { font-size: 0.95rem; }
 
     .lock-card input {
       width: 100%;
       padding: 12px;
       margin-top: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid #ccc;
       font-size: 1rem;
     }
@@ -60,28 +57,21 @@
       margin-top: 18px;
       padding: 12px 20px;
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
       border: none;
-      background: #b22222;
-      color: white;
+      background: #63b3ed;
+      color: #0f2a44;
       font-size: 1rem;
       cursor: pointer;
     }
 
-    .lock-card button:hover { background: #8b1a1a; }
-
-    .error {
-      color: #b22222;
-      font-size: 0.9rem;
-      margin-top: 10px;
-      display: none;
-    }
+    .error { color: #c53030; font-size: 0.9rem; margin-top: 10px; display: none; }
 
     /* Snow */
     .snow { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
     .snow span {
       position: absolute; top: -10px; width: 6px; height: 6px;
-      background: white; border-radius: 50%; opacity: 0.8;
+      background: white; border-radius: 50%; opacity: 0.9;
       animation: snowFall linear infinite;
     }
     @keyframes snowFall { to { transform: translateY(110vh); } }
@@ -96,11 +86,11 @@
       font-size: 3rem; margin: 0;
     }
 
-    header p { margin-top: 12px; font-size: 1.15rem; opacity: 0.9; }
+    header p { margin-top: 12px; font-size: 1.15rem; }
 
     .divider {
-      width: 120px; height: 3px;
-      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+      width: 120px; height: 4px;
+      background: linear-gradient(90deg, transparent, #ffffff, transparent);
       margin: 25px auto 0;
     }
 
@@ -109,79 +99,90 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 26px;
-      padding: 50px 30px 70px;
+      padding: 50px 30px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .name-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
-      backdrop-filter: blur(6px);
-      border-radius: 20px;
-      padding: 28px 20px;
+      background: #ffffffcc;
+      border-radius: 22px;
+      padding: 30px 20px 38px;
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-      position: relative; overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      position: relative;
+    }
+
+    .name-card::after {
+      content: '⛄';
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 1.4rem;
+      opacity: 0.8;
     }
 
     .name-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
     }
 
     .name-card h2 {
       margin: 0;
       font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
+      font-size: 1.6rem;
+      color: #2b6cb0;
     }
 
     .modal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.6);
       justify-content: center; align-items: center;
-      padding: 20px; z-index: 1000;
+      padding: 20px; z-index: 2000;
     }
 
     .modal-content {
-      background: linear-gradient(180deg, #fffdf7, #f7efe3);
-      color: #2c2c2c;
+      background: #ffffff;
+      color: #0f2a44;
       max-width: 650px; width: 100%;
-      border-radius: 22px;
-      padding: 40px 35px;
+      border-radius: 26px;
+      padding: 42px 38px;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      box-shadow: 0 25px 55px rgba(0,0,0,0.35);
     }
 
     .modal-content h3 {
       margin-top: 0;
       font-family: 'Playfair Display', serif;
-      color: #b22222; font-size: 1.9rem;
+      color: #2b6cb0;
+      font-size: 2rem;
     }
 
     .modal-content p {
-      white-space: pre-line; font-size: 1.05rem; line-height: 1.7;
+      white-space: pre-line;
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
     .close {
       position: absolute; top: 18px; right: 22px;
-      font-size: 1.6rem; cursor: pointer; color: #777;
+      font-size: 1.6rem; cursor: pointer; color: #555;
     }
 
     footer {
       position: relative; z-index: 1;
       text-align: center; padding: 30px 20px 40px;
-      font-size: 0.95rem; opacity: 0.85;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Password Screen -->
   <div class="lock-screen" id="lockScreen">
     <div class="lock-card">
-      <h2>Cartas de Navidad</h2>
+      <h2>🎄 Cartas de Navidad ⛄</h2>
       <p>Escribe la contraseña para entrar</p>
       <input type="password" id="passwordInput" placeholder="Contraseña" />
       <button onclick="checkPassword()">Entrar</button>
@@ -204,7 +205,7 @@
 
   <header>
     <h1>Cartas de Navidad</h1>
-    <p>Un pequeño detalle lleno de amor y cariño</p>
+    <p>Un pequeño detalle hecho con cariño</p>
     <div class="divider"></div>
   </header>
 
@@ -232,7 +233,7 @@
   </div>
 
   <footer>
-    <p>Hecho con amor esta Navidad</p>
+    <p>Hecho con amor esta Navidad ❄️</p>
   </footer>
 
   <script>
@@ -248,18 +249,18 @@
     }
 
     const letters = {
-      Mami: "Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme todos los días y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas con todo. Gracias por los abrazos y por hacerme sentir bien. Te quiero mucho.",
-      Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por estar conmigo y por enseñarme cosas. Me gusta cuando pasamos tiempo juntos y cuando me haces reír. Gracias por ayudarme siempre. Te quiero mucho.",
-      Daniela: "Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos. Me gusta mucho pasar tiempo contigo. Espero que esta Navidad sea muy linda para ti.",
-      Daniel: "Querido Daniel,\n\nFeliz Navidad. Espero que la pases muy bien y que estés feliz. Te deseo un año bonito con muchas cosas buenas y momentos alegres.",
-      Abuelito: "Querido Abuelito,\n\nFeliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta escucharte y estar contigo. Te quiero mucho y espero que estés muy bien.",
-      Consue: "Querida Consue,\n\nFeliz Navidad. Gracias por ser tan amable y cariñosa conmigo. Me gusta cuando estamos juntos. Espero que tengas un día muy bonito.",
-      Jose: "Querido Jose,\n\nFeliz Navidad. Espero que estés feliz y que la pases muy bien. Te deseo un año con muchas cosas buenas y momentos lindos.",
-      Lina: "Querida Lina,\n\nFeliz Navidad. Me gusta mucho cuando sonríes y cuando estamos en familia. Espero que la pases muy bonito y que seas muy feliz.",
-      Juli: "Querida Juli,\n\nFeliz Navidad. Gracias por ser tan divertida y buena. Me gusta pasar tiempo contigo. Espero que la pases genial.",
-      Herbi: "Querido Herbi,\n\nFeliz Navidad. Espero que estés bien y que tengas momentos felices. Te deseo un año bonito y tranquilo.",
-      Pablo: "Querido Pablo,\n\nFeliz Navidad. Me gusta cuando nos divertimos y pasamos tiempo juntos. Espero que la pases muy bien y que tengas un año bonito.",
-      Pao: "Querida Pao,\n\nFeliz Navidad. Gracias por ser tan linda conmigo. Espero que tengas días felices y muchos momentos bonitos con la familia."
+      Mami: "Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme todos los días y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas. Gracias por los abrazos. Te quiero mucho.",
+      Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por estar conmigo y por ayudarme siempre. Me gusta cuando pasamos tiempo juntos. Te quiero mucho.",
+      Daniela: "Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos. Me gusta mucho estar contigo.",
+      Daniel: "Querido Daniel,\n\nFeliz Navidad. Espero que la pases muy bien y que estés feliz. Te deseo un año bonito.",
+      Abuelito: "Querido Abuelito,\n\nFeliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta mucho estar contigo.",
+      Consue: "Querida Consue,\n\nFeliz Navidad. Gracias por ser tan amable conmigo. Espero que tengas un día bonito.",
+      Jose: "Querido Jose,\n\nFeliz Navidad. Espero que estés bien y que tengas un año con cosas buenas.",
+      Lina: "Querida Lina,\n\nFeliz Navidad. Me gusta cuando estamos en familia. Espero que la pases muy bonito.",
+      Juli: "Querida Juli,\n\nFeliz Navidad. Gracias por ser tan divertida. Espero que la pases genial.",
+      Herbi: "Querido Herbi,\n\nFeliz Navidad. Te deseo momentos felices y un año bonito.",
+      Pablo: "Querido Pablo,\n\nFeliz Navidad. Me gusta cuando nos divertimos juntos. Espero que la pases muy bien.",
+      Pao: "Querida Pao,\n\nFeliz Navidad. Espero que tengas días felices y momentos lindos con la familia."
     };
 
     function openLetter(name) {
