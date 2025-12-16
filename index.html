@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cartas de Navidad Familiares</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -101,22 +101,38 @@
       position: relative;
     }
     .close { position: absolute; top: 18px; right: 22px; font-size: 1.6rem; cursor: pointer; }
+    .rojas-card {
+      background: #ffffffee;
+      padding: 30px;
+      border-radius: 26px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    .rojas-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      margin: 20px auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
-<!-- Password -->
 <div class="lock-screen" id="lockScreen">
   <div class="lock-card">
-    <h2>🎄 Cartas de Navidad ⛄</h2>
+    <h2>Cartas de Navidad</h2>
     <p>Escribe la contrasena para entrar</p>
-    <input type="password" id="passwordInput" />
+    <input type="password" id="passwordInput">
     <button id="enterBtn">Entrar</button>
     <div class="error" id="error">Contrasena incorrecta</div>
   </div>
 </div>
 
-<!-- Family select -->
 <div class="lock-screen" id="familySelect" style="display:none;">
   <div class="lock-card">
     <h2>Elige la familia</h2>
@@ -125,11 +141,12 @@
   </div>
 </div>
 
-<!-- Familia Rojas -->
-<div class="lock-screen" id="rojasView" style="display:none; flex-direction:column;">
-  <h2>Familia Rojas</h2>
-  <img src="family-tree.png" alt="Arbol familia Rojas" style="max-width:55%; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.25); margin:20px auto;" />
-  <button onclick="closeRojas()">Volver</button>
+<div class="lock-screen" id="rojasView" style="display:none; justify-content:center; align-items:center;">
+  <div class="rojas-card">
+    <h2>Familia Rojas</h2>
+    <img src="family-tree.png" alt="Arbol familia Rojas" class="rojas-img">
+    <button onclick="closeRojas()">Volver</button>
+  </div>
 </div>
 
 <header>
@@ -156,7 +173,7 @@
 
 <div class="modal" id="modal">
   <div class="modal-content">
-      <button id="volverBtn" style="position:absolute; left:22px; top:18px; padding:6px 14px; border-radius:12px; border:none; background:#bee3f8; cursor:pointer;">Volver</button>
+    <button id="volverBtn" style="position:absolute; left:22px; top:18px;">Volver</button>
     <span class="close" onclick="closeLetter()">&times;</span>
     <h3 id="letter-title"></h3>
     <p id="letter-body"></p>
@@ -167,16 +184,14 @@
 const PASSWORD = 'ContrasenaNavidad20';
 
 function checkPassword() {
-  const inputEl = document.getElementById('passwordInput');
-  const errorEl = document.getElementById('error');
-  if (!inputEl) return;
-  const input = inputEl.value;
+  const input = document.getElementById('passwordInput').value;
+  const error = document.getElementById('error');
   if (input === PASSWORD) {
     document.getElementById('lockScreen').style.display = 'none';
     document.getElementById('familySelect').style.display = 'flex';
-    errorEl.style.display = 'none';
+    error.style.display = 'none';
   } else {
-    errorEl.style.display = 'block';
+    error.style.display = 'block';
   }
 }
 
@@ -193,63 +208,63 @@ function closeRojas() {
   document.getElementById('rojasView').style.display = 'none';
 }
 
-// Use template literals to avoid invalid tokens from line breaks
 const letters = {
   Mami: `Querida Mami,
 
-Feliz Navidad. Gracias por cuidarme todos los dias, por ayudarme cuando estoy triste y por hacerme reir. Me encanta pasar tiempo contigo y aprender de ti.
+Feliz Navidad. Gracias por cuidarme todos los dias y por siempre estar para mi. Me gusta mucho cuando hablamos, cuando me ayudas y cuando me haces sentir seguro. Eres muy especial para mi y te quiero muchisimo.
 
-Te quiero muchisimo y espero que esta Navidad sea muy especial para ti.
+Espero que esta Navidad sea muy linda y que sigamos compartiendo muchos momentos juntos.
 
+Con mucho carino,
 Gabriel`,
   Papi: `Querido Papi,
 
-Feliz Navidad. Gracias por todo lo que haces por mi, por apoyarme siempre y por ensenarme cosas nuevas. Me gusta mucho cuando pasamos tiempo juntos.
+Feliz Navidad. Gracias por todo lo que haces por mi y por apoyarme siempre. Me gusta aprender cosas contigo y pasar tiempo juntos. Siempre me ayudas a mejorar y eso lo valoro mucho.
 
 Te quiero mucho y espero que tengas una Navidad muy feliz.
 
+Con carino,
 Gabriel`,
   Daniela: `Querida Daniela,
 
-Feliz Navidad. Gracias por ser tan buena conmigo y por compartir momentos divertidos. Me gusta mucho cuando hablamos y reimos juntos.
+Feliz Navidad. Gracias por ser tan buena conmigo y por compartir momentos divertidos. Me gusta cuando hablamos y reimos, y cuando pasamos tiempo juntos.
 
-Te quiero y te deseo una Navidad llena de alegria.
+Te deseo una Navidad llena de alegria y cosas bonitas.
 
 Gabriel`,
   Daniel: `Querido Daniel,
 
-Feliz Navidad. Gracias por los momentos divertidos y por hacerme reir. Siempre es bonito pasar tiempo contigo.
+Feliz Navidad. Gracias por los momentos divertidos y por hacerme reir. Siempre es chevere compartir tiempo contigo.
 
-Espero que esta Navidad sea genial para ti.
+Espero que esta Navidad sea genial.
 
 Gabriel`,
   Abuelito: `Querido Abuelito,
 
-Feliz Navidad. Gracias por tus historias, tus consejos y tu carino. Me gusta mucho escucharte y aprender de ti.
+Feliz Navidad. Gracias por tus historias, tus consejos y por todo el carino que me das. Me gusta mucho escucharte y pasar tiempo contigo.
 
-Te quiero mucho y espero darte muchos abrazos esta Navidad.
+Te quiero mucho y espero abrazarte esta Navidad.
 
 Gabriel`,
   Abuelita: `Querida Abuelita,
 
-Feliz Navidad. Gracias por tu amor, tus abrazos y por cuidarnos tanto. Me haces sentir muy feliz.
+Feliz Navidad. Gracias por tu amor, tus abrazos y por cuidarnos tanto. Siempre me haces sentir feliz y querido.
 
-Te quiero muchisimo y espero verte sonreir esta Navidad.
+Te quiero muchisimo y espero que esta Navidad sea muy especial.
 
 Gabriel`,
   Consue: `Querida Consue,
 
-Feliz Navidad. Gracias por tu carino y por ser siempre tan amable conmigo.
+Feliz Navidad. Gracias por ser tan amable y carinosa conmigo. Me gusta mucho compartir momentos contigo.
 
-Te deseo una Navidad muy bonita y llena de alegria.
+Te deseo una Navidad muy bonita.
 
 Gabriel`,
   Jose: `Querido Jose,
 
-Feliz Navidad. Te deseo lo mejor siempre y que la pases muy bien con la familia.
+Feliz Navidad. Espero que la pases muy bien y que tengas muchos momentos felices con la familia.
 
-Espero que tengas una Navidad feliz.
-
+Un abrazo grande,
 Gabriel`,
   Lina: `Querida Lina,
 
@@ -260,10 +275,9 @@ Te deseo una Navidad muy especial.
 Gabriel`,
   Juli: `Querida Juli,
 
-Feliz Navidad. Espero que tengas un ano increible y lleno de cosas buenas. Gracias por ser tan divertida.
+Feliz Navidad. Espero que tengas un ano lleno de cosas buenas y momentos felices. Gracias por ser tan divertida.
 
-Te mando un abrazo grande.
-
+Un abrazo,
 Gabriel`,
   Herbi: `Querido Herbi,
 
@@ -274,17 +288,17 @@ Espero que esta Navidad la pases muy bien.
 Gabriel`,
   Pablo: `Querido Pablo,
 
-Feliz Navidad. Espero que la pases muy bien y que tengas muchos momentos felices.
+Feliz Navidad. Espero que la pases muy bien y que tengas muchos momentos felices con la familia.
 
-Te mando un abrazo y mis mejores deseos.
-
+Un abrazo grande,
 Gabriel`,
   Pao: `Querida Pao,
 
-Feliz Navidad. Gracias por ser tan linda conmigo. Espero que esta Navidad este llena de sonrisas.
+Feliz Navidad. Gracias por ser tan linda conmigo. Me gusta mucho compartir tiempo contigo.
 
-Te mando un abrazo grande.
+Espero que esta Navidad este llena de sonrisas.
 
+Un abrazo,
 Gabriel`
 };
 
@@ -298,20 +312,9 @@ function closeLetter() {
   document.getElementById('modal').style.display = 'none';
 }
 
-// Boton volver
-window.addEventListener('DOMContentLoaded', () => {
-  const volver = document.getElementById('volverBtn');
-  if (volver) volver.addEventListener('click', closeLetter);
-}
-
-// Robust event wiring
-window.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('enterBtn');
-  const input = document.getElementById('passwordInput');
-  if (btn) btn.addEventListener('click', checkPassword);
-  if (input) input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') checkPassword();
-  });
+window.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('enterBtn').addEventListener('click', checkPassword);
+  document.getElementById('volverBtn').addEventListener('click', closeLetter);
 });
 </script>
 </body>
