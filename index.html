@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cartas de Navidad Familiares</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; }
 
@@ -14,17 +16,15 @@
       background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
       color: #0f2a44;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    /* Lock screen */
     .lock-screen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
       display: flex;
       align-items: center;
       justify-content: center;
+      background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
       z-index: 3000;
     }
 
@@ -60,42 +60,41 @@
       border-radius: 14px;
       border: none;
       background: #63b3ed;
-      color: #0f2a44;
       font-size: 1rem;
       cursor: pointer;
     }
 
-    .error { color: #c53030; font-size: 0.9rem; margin-top: 10px; display: none; }
-
-    /* Snow */
-    .snow { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    .snow span {
-      position: absolute; top: -10px; width: 6px; height: 6px;
-      background: white; border-radius: 50%; opacity: 0.9;
-      animation: snowFall linear infinite;
+    .error {
+      color: #c53030;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
     }
-    @keyframes snowFall { to { transform: translateY(110vh); } }
 
     header {
-      position: relative; z-index: 1; text-align: center;
+      text-align: center;
       padding: 70px 20px 40px;
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem; margin: 0;
+      font-size: 3rem;
+      margin: 0;
     }
 
-    header p { margin-top: 12px; font-size: 1.15rem; }
+    header p {
+      margin-top: 12px;
+      font-size: 1.15rem;
+    }
 
     .divider {
-      width: 120px; height: 4px;
+      width: 120px;
+      height: 4px;
       background: linear-gradient(90deg, transparent, #ffffff, transparent);
       margin: 25px auto 0;
     }
 
     .names {
-      position: relative; z-index: 1;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 26px;
@@ -110,23 +109,7 @@
       padding: 30px 20px 38px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-      position: relative;
-    }
-
-    .name-card::after {
-      content: '⛄';
-      position: absolute;
-      bottom: 8px;
-      right: 12px;
-      font-size: 1.4rem;
-      opacity: 0.8;
-    }
-
-    .name-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
     }
 
     .name-card h2 {
@@ -137,234 +120,128 @@
     }
 
     .modal {
-      display: none; position: fixed; inset: 0;
+      display: none;
+      position: fixed;
+      inset: 0;
       background: rgba(0,0,0,0.6);
-      justify-content: center; align-items: center;
-      padding: 20px; z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 2000;
     }
 
     .modal-content {
       background: #ffffff;
-      color: #0f2a44;
-      max-width: 650px; width: 100%;
+      max-width: 650px;
+      width: 100%;
       border-radius: 26px;
       padding: 42px 38px;
       position: relative;
-      box-shadow: 0 25px 55px rgba(0,0,0,0.35);
-    }
-
-    .modal-content h3 {
-      margin-top: 0;
-      font-family: 'Playfair Display', serif;
-      color: #2b6cb0;
-      font-size: 2rem;
-    }
-
-    .modal-content p {
-      white-space: pre-line;
-      font-size: 1.25rem;
-      line-height: 1.9;
     }
 
     .close {
-      position: absolute; top: 18px; right: 22px;
-      font-size: 1.6rem; cursor: pointer; color: #555;
-    }
-
-    footer {
-      position: relative; z-index: 1;
-      text-align: center; padding: 30px 20px 40px;
-      font-size: 0.95rem;
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 1.6rem;
+      cursor: pointer;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="lock-screen" id="lockScreen">
-    <div class="lock-card">
-      <h2>🎄 Cartas de Navidad ⛄</h2>
-      <p>Escribe la contraseña para entrar</p>
-      <input type="password" id="passwordInput" placeholder="Contraseña" />
-      <button onclick="checkPassword()">Entrar</button>
-      <div class="error" id="error">Contraseña incorrecta</div>
-    </div>
+<!-- PASSWORD -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-card">
+    <h2>🎄 Cartas de Navidad ⛄</h2>
+    <p>Escribe la contraseña para entrar</p>
+    <input type="password" id="passwordInput" />
+    <button onclick="checkPassword()">Entrar</button>
+    <div class="error" id="error">Contraseña incorrecta</div>
   </div>
+</div>
 
-  <div class="snow">
-    <span style="left:5%;animation-duration:12s"></span>
-    <span style="left:15%;animation-duration:9s"></span>
-    <span style="left:25%;animation-duration:14s"></span>
-    <span style="left:35%;animation-duration:10s"></span>
-    <span style="left:45%;animation-duration:13s"></span>
-    <span style="left:55%;animation-duration:11s"></span>
-    <span style="left:65%;animation-duration:15s"></span>
-    <span style="left:75%;animation-duration:9s"></span>
-    <span style="left:85%;animation-duration:12s"></span>
-    <span style="left:95%;animation-duration:14s"></span>
+<!-- FAMILY SELECT -->
+<div class="lock-screen" id="familySelect" style="display:none;">
+  <div class="lock-card">
+    <h2>Elige la familia</h2>
+    <button onclick="enterVillegas()">Familia Villegas</button>
+    <button onclick="enterRojas()" style="margin-top:10px;">Familia Rojas</button>
   </div>
+</div>
 
-  <header>
-    <h1>Cartas de Navidad</h1>
-    <p>Un pequeño detalle hecho con cariño</p>
-    <div class="divider"></div>
-  </header>
+<!-- FAMILIA ROJAS -->
+<div class="lock-screen" id="rojasView" style="display:none; flex-direction:column;">
+  <h2>Familia Rojas</h2>
+  <img src="family-tree.png" style="max-width:90%; border-radius:20px;" />
+  <button onclick="closeRojas()" style="margin-top:20px;">Volver</button>
+</div>
 
-  <div class="modal" id="familySelect" style="display:none;">
-    <div class="modal-content" style="text-align:center;">
-      <h3>Elige tu familia</h3>
-      <button style="margin:15px;padding:14px 22px;border-radius:16px;border:none;background:#63b3ed;font-size:1.1rem;cursor:pointer;" onclick="enterVillegas()">Familia Villegas</button>
-      <button style="margin:15px;padding:14px 22px;border-radius:16px;border:none;background:#90cdf4;font-size:1.1rem;cursor:pointer;" onclick="enterRojas()">Familia Rojas</button>
-    </div>
+<header>
+  <h1>Cartas de Navidad</h1>
+  <p>Un pequeño detalle hecho con cariño</p>
+  <div class="divider"></div>
+</header>
+
+<section class="names">
+  <div class="name-card" onclick="openLetter('Mami')"><h2>Mami</h2></div>
+  <div class="name-card" onclick="openLetter('Papi')"><h2>Papi</h2></div>
+  <div class="name-card" onclick="openLetter('Daniela')"><h2>Daniela</h2></div>
+  <div class="name-card" onclick="openLetter('Daniel')"><h2>Daniel</h2></div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLetter()">&times;</span>
+    <h3 id="letter-title"></h3>
+    <p id="letter-body"></p>
   </div>
+</div>
 
-  <div class="modal" id="rojasView">
-    <div class="modal-content" style="max-width:900px;text-align:center;">
-      <span class="close" onclick="closeRojas()">&times;</span>
-      <h3>Familia Rojas</h3>
-      <img src="family-tree.png" alt="Árbol Familia Rojas" style="max-width:100%;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.25);" />
-    </div>
-  </div>
+<script>
+const PASSWORD = "ContraseñaNavidad20";
 
-  <section class="names">
-    <div class="name-card" onclick="openLetter('Mami')"><h2>Mami</h2></div>
-    <div class="name-card" onclick="openLetter('Papi')"><h2>Papi</h2></div>
-    <div class="name-card" onclick="openLetter('Daniela')"><h2>Daniela</h2></div>
-    <div class="name-card" onclick="openLetter('Daniel')"><h2>Daniel</h2></div>
-    <div class="name-card" onclick="openLetter('Abuelito')"><h2>Abuelito</h2></div>
-    <div class="name-card" onclick="openLetter('Consue')"><h2>Consue</h2></div>
-    <div class="name-card" onclick="openLetter('Jose')"><h2>Jose</h2></div>
-    <div class="name-card" onclick="openLetter('Lina')"><h2>Lina</h2></div>
-    <div class="name-card" onclick="openLetter('Juli')"><h2>Juli</h2></div>
-    <div class="name-card" onclick="openLetter('Herbi')"><h2>Herbi</h2></div>
-    <div class="name-card" onclick="openLetter('Pablo')"><h2>Pablo</h2></div>
-    <div class="name-card" onclick="openLetter('Pao')"><h2>Pao</h2></div>
-  </section>
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if (input === PASSWORD) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("familySelect").style.display = "flex";
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+}
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeLetter()">&times;</span>
-      <h3 id="letter-title"></h3>
-      <p id="letter-body"></p>
-    </div>
-  </div>
+function enterVillegas() {
+  document.getElementById("familySelect").style.display = "none";
+}
 
-  <footer>
-    <p>Hecho con amor esta Navidad ❄️</p>
-  </footer>
+function enterRojas() {
+  document.getElementById("familySelect").style.display = "none";
+  document.getElementById("rojasView").style.display = "flex";
+}
 
-  <script>
-    const PASSWORD = "ContraseñaNavidad20";
+function closeRojas() {
+  document.getElementById("rojasView").style.display = "none";
+}
 
-    function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === PASSWORD) {
-        document.getElementById('lockScreen').style.display = 'none';
-        document.getElementById('familySelect').style.display = 'flex';
-      } else {
-        document.getElementById('error').style.display = 'block';
-      }
-    } else {
-        document.getElementById('error').style.display = 'block';
-      }
-    }
+const letters = {
+  Mami: "Querida Mami,\n\nFeliz Navidad. Te quiero mucho.\n\nGabriel",
+  Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por todo.\n\nGabriel",
+  Daniela: "Querida Daniela,\n\nFeliz Navidad.\n\nGabriel",
+  Daniel: "Querido Daniel,\n\nFeliz Navidad.\n\nGabriel"
+};
 
-    const letters = {
-      Mami: "Querida Mami,
+function openLetter(name) {
+  document.getElementById("letter-title").innerText = "Carta para " + name;
+  document.getElementById("letter-body").innerText = letters[name];
+  document.getElementById("modal").style.display = "flex";
+}
 
-Feliz Navidad. Gracias por cuidarme todos los días y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas con todo. Gracias por los abrazos y por hacerme sentir seguro. Te quiero muchísimo.
+function closeLetter() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
 
-Con cariño,
-Gabriel",
-      Papi: "Querido Papi,
-
-Feliz Navidad. Gracias por estar conmigo siempre y por enseñarme muchas cosas. Me gusta cuando hablamos y cuando pasamos tiempo juntos. Gracias por apoyarme. Te quiero mucho.
-
-Con cariño,
-Gabriel",
-      Daniela: "Querida Daniela,
-
-Feliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos que compartimos. Me gusta mucho pasar tiempo contigo y reírnos.
-
-Con cariño,
-Gabriel",
-      Daniel: "Querido Daniel,
-
-Feliz Navidad. Espero que la pases muy bien y que estés feliz. Gracias por los buenos momentos. Te deseo un año muy bonito.
-
-Con cariño,
-Gabriel",
-      Abuelito: "Querido Abuelito,
-
-Feliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta escucharte y aprender de ti. Gracias por cuidarme siempre.
-
-Con cariño,
-Gabriel",
-      Consue: "Querida Consue,
-
-Feliz Navidad. Gracias por ser tan amable y cariñosa conmigo. Me gusta mucho cuando estamos juntos en familia.
-
-Con cariño,
-Gabriel",
-      Jose: "Querido Jose,
-
-Feliz Navidad. Gracias por los buenos momentos y por estar presente. Te deseo un año lleno de cosas buenas y alegrías.
-
-Con cariño,
-Gabriel",
-      Lina: "Querida Lina,
-
-Feliz Navidad. Me gusta mucho cuando estamos todos juntos y compartimos. Espero que la pases muy bonito y con mucha alegría.
-
-Con cariño,
-Gabriel",
-      Juli: "Querida Juli,
-
-Feliz Navidad. Gracias por ser tan divertida y por hacerme reír. Me gusta mucho pasar tiempo contigo.
-
-Con cariño,
-Gabriel",
-      Herbi: "Querido Herbi,
-
-Feliz Navidad. Gracias por estar y por los momentos compartidos. Te deseo un año tranquilo y lleno de cosas buenas.
-
-Con cariño,
-Gabriel",
-      Pablo: "Querido Pablo,
-
-Feliz Navidad. Me gusta mucho cuando nos divertimos y compartimos momentos juntos. Espero que la pases muy bien.
-
-Con cariño,
-Gabriel",
-      Pao: "Querida Pao,
-
-Feliz Navidad. Gracias por ser tan linda conmigo. Espero que tengas días felices y momentos muy bonitos con la familia.
-
-Con cariño,
-Gabriel",
-    };
-
-    function openLetter(name) {
-      document.getElementById('letter-title').innerText = `Carta de Navidad para ${name}`;
-      document.getElementById('letter-body').innerText = letters[name];
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function closeLetter() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    function enterVillegas() {
-      document.getElementById('familySelect').style.display = 'none';
-    }
-
-    function enterRojas() {
-      document.getElementById('familySelect').style.display = 'none';
-      document.getElementById('rojasView').style.display = 'flex';
-    }
-
-    function closeRojas() {
-      document.getElementById('rojasView').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
