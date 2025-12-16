@@ -128,7 +128,7 @@
 <!-- Familia Rojas -->
 <div class="lock-screen" id="rojasView" style="display:none; flex-direction:column;">
   <h2>Familia Rojas</h2>
-  <img src="family-tree.png" alt="Arbol familia Rojas" style="max-width:90%; border-radius:20px;" />
+  <img src="family-tree.png" alt="Arbol familia Rojas" style="max-width:55%; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.25); margin:20px auto;" />
   <button onclick="closeRojas()">Volver</button>
 </div>
 
@@ -156,6 +156,7 @@
 
 <div class="modal" id="modal">
   <div class="modal-content">
+      <button id="volverBtn" style="position:absolute; left:22px; top:18px; padding:6px 14px; border-radius:12px; border:none; background:#bee3f8; cursor:pointer;">Volver</button>
     <span class="close" onclick="closeLetter()">&times;</span>
     <h3 id="letter-title"></h3>
     <p id="letter-body"></p>
@@ -194,19 +195,97 @@ function closeRojas() {
 
 // Use template literals to avoid invalid tokens from line breaks
 const letters = {
-  Mami: `Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme siempre. Te quiero muchisimo.\n\nGabriel`,
-  Papi: `Querido Papi,\n\nFeliz Navidad. Gracias por todo lo que haces por mi. Te quiero mucho.\n\nGabriel`,
-  Daniela: `Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo.\n\nGabriel`,
-  Daniel: `Querido Daniel,\n\nFeliz Navidad. Gracias por los momentos divertidos.\n\nGabriel`,
-  Abuelito: `Querido Abuelito,\n\nFeliz Navidad. Gracias por tus historias y tu carino.\n\nGabriel`,
-  Abuelita: `Querida Abuelita,\n\nFeliz Navidad. Gracias por tu amor y tus abrazos.\n\nGabriel`,
-  Consue: `Querida Consue,\n\nFeliz Navidad. Gracias por tu carino.\n\nGabriel`,
-  Jose: `Querido Jose,\n\nFeliz Navidad. Te deseo lo mejor siempre.\n\nGabriel`,
-  Lina: `Querida Lina,\n\nFeliz Navidad. Gracias por tu alegria.\n\nGabriel`,
-  Juli: `Querida Juli,\n\nFeliz Navidad. Espero que tengas un ano increible.\n\nGabriel`,
-  Herbi: `Querido Herbi,\n\nFeliz Navidad. Gracias por los buenos momentos.\n\nGabriel`,
-  Pablo: `Querido Pablo,\n\nFeliz Navidad. Espero que la pases muy bien.\n\nGabriel`,
-  Pao: `Querida Pao,\n\nFeliz Navidad. Te mando un abrazo grande.\n\nGabriel`
+  Mami: `Querida Mami,
+
+Feliz Navidad. Gracias por cuidarme todos los dias, por ayudarme cuando estoy triste y por hacerme reir. Me encanta pasar tiempo contigo y aprender de ti.
+
+Te quiero muchisimo y espero que esta Navidad sea muy especial para ti.
+
+Gabriel`,
+  Papi: `Querido Papi,
+
+Feliz Navidad. Gracias por todo lo que haces por mi, por apoyarme siempre y por ensenarme cosas nuevas. Me gusta mucho cuando pasamos tiempo juntos.
+
+Te quiero mucho y espero que tengas una Navidad muy feliz.
+
+Gabriel`,
+  Daniela: `Querida Daniela,
+
+Feliz Navidad. Gracias por ser tan buena conmigo y por compartir momentos divertidos. Me gusta mucho cuando hablamos y reimos juntos.
+
+Te quiero y te deseo una Navidad llena de alegria.
+
+Gabriel`,
+  Daniel: `Querido Daniel,
+
+Feliz Navidad. Gracias por los momentos divertidos y por hacerme reir. Siempre es bonito pasar tiempo contigo.
+
+Espero que esta Navidad sea genial para ti.
+
+Gabriel`,
+  Abuelito: `Querido Abuelito,
+
+Feliz Navidad. Gracias por tus historias, tus consejos y tu carino. Me gusta mucho escucharte y aprender de ti.
+
+Te quiero mucho y espero darte muchos abrazos esta Navidad.
+
+Gabriel`,
+  Abuelita: `Querida Abuelita,
+
+Feliz Navidad. Gracias por tu amor, tus abrazos y por cuidarnos tanto. Me haces sentir muy feliz.
+
+Te quiero muchisimo y espero verte sonreir esta Navidad.
+
+Gabriel`,
+  Consue: `Querida Consue,
+
+Feliz Navidad. Gracias por tu carino y por ser siempre tan amable conmigo.
+
+Te deseo una Navidad muy bonita y llena de alegria.
+
+Gabriel`,
+  Jose: `Querido Jose,
+
+Feliz Navidad. Te deseo lo mejor siempre y que la pases muy bien con la familia.
+
+Espero que tengas una Navidad feliz.
+
+Gabriel`,
+  Lina: `Querida Lina,
+
+Feliz Navidad. Gracias por tu alegria y por hacer los dias mas lindos. Me gusta mucho compartir contigo.
+
+Te deseo una Navidad muy especial.
+
+Gabriel`,
+  Juli: `Querida Juli,
+
+Feliz Navidad. Espero que tengas un ano increible y lleno de cosas buenas. Gracias por ser tan divertida.
+
+Te mando un abrazo grande.
+
+Gabriel`,
+  Herbi: `Querido Herbi,
+
+Feliz Navidad. Gracias por los buenos momentos y por hacerme reir.
+
+Espero que esta Navidad la pases muy bien.
+
+Gabriel`,
+  Pablo: `Querido Pablo,
+
+Feliz Navidad. Espero que la pases muy bien y que tengas muchos momentos felices.
+
+Te mando un abrazo y mis mejores deseos.
+
+Gabriel`,
+  Pao: `Querida Pao,
+
+Feliz Navidad. Gracias por ser tan linda conmigo. Espero que esta Navidad este llena de sonrisas.
+
+Te mando un abrazo grande.
+
+Gabriel`
 };
 
 function openLetter(name) {
@@ -217,6 +296,12 @@ function openLetter(name) {
 
 function closeLetter() {
   document.getElementById('modal').style.display = 'none';
+}
+
+// Boton volver
+window.addEventListener('DOMContentLoaded', () => {
+  const volver = document.getElementById('volverBtn');
+  if (volver) volver.addEventListener('click', closeLetter);
 }
 
 // Robust event wiring
