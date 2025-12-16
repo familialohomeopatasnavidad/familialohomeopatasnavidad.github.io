@@ -162,8 +162,8 @@
 
     .modal-content p {
       white-space: pre-line;
-      font-size: 1.05rem;
-      line-height: 1.7;
+      font-size: 1.25rem;
+      line-height: 1.9;
     }
 
     .close {
@@ -209,6 +209,22 @@
     <div class="divider"></div>
   </header>
 
+  <div class="modal" id="familySelect" style="display:none;">
+    <div class="modal-content" style="text-align:center;">
+      <h3>Elige tu familia</h3>
+      <button style="margin:15px;padding:14px 22px;border-radius:16px;border:none;background:#63b3ed;font-size:1.1rem;cursor:pointer;" onclick="enterVillegas()">Familia Villegas</button>
+      <button style="margin:15px;padding:14px 22px;border-radius:16px;border:none;background:#90cdf4;font-size:1.1rem;cursor:pointer;" onclick="enterRojas()">Familia Rojas</button>
+    </div>
+  </div>
+
+  <div class="modal" id="rojasView">
+    <div class="modal-content" style="max-width:900px;text-align:center;">
+      <span class="close" onclick="closeRojas()">&times;</span>
+      <h3>Familia Rojas</h3>
+      <img src="family-tree.png" alt="Árbol Familia Rojas" style="max-width:100%;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.25);" />
+    </div>
+  </div>
+
   <section class="names">
     <div class="name-card" onclick="openLetter('Mami')"><h2>Mami</h2></div>
     <div class="name-card" onclick="openLetter('Papi')"><h2>Papi</h2></div>
@@ -243,24 +259,88 @@
       const input = document.getElementById('passwordInput').value;
       if (input === PASSWORD) {
         document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('familySelect').style.display = 'flex';
       } else {
+        document.getElementById('error').style.display = 'block';
+      }
+    } else {
         document.getElementById('error').style.display = 'block';
       }
     }
 
     const letters = {
-      Mami: "Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme todos los días y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas. Gracias por los abrazos. Te quiero mucho.",
-      Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por estar conmigo y por ayudarme siempre. Me gusta cuando pasamos tiempo juntos. Te quiero mucho.",
-      Daniela: "Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos. Me gusta mucho estar contigo.",
-      Daniel: "Querido Daniel,\n\nFeliz Navidad. Espero que la pases muy bien y que estés feliz. Te deseo un año bonito.",
-      Abuelito: "Querido Abuelito,\n\nFeliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta mucho estar contigo.",
-      Consue: "Querida Consue,\n\nFeliz Navidad. Gracias por ser tan amable conmigo. Espero que tengas un día bonito.",
-      Jose: "Querido Jose,\n\nFeliz Navidad. Espero que estés bien y que tengas un año con cosas buenas.",
-      Lina: "Querida Lina,\n\nFeliz Navidad. Me gusta cuando estamos en familia. Espero que la pases muy bonito.",
-      Juli: "Querida Juli,\n\nFeliz Navidad. Gracias por ser tan divertida. Espero que la pases genial.",
-      Herbi: "Querido Herbi,\n\nFeliz Navidad. Te deseo momentos felices y un año bonito.",
-      Pablo: "Querido Pablo,\n\nFeliz Navidad. Me gusta cuando nos divertimos juntos. Espero que la pases muy bien.",
-      Pao: "Querida Pao,\n\nFeliz Navidad. Espero que tengas días felices y momentos lindos con la familia."
+      Mami: "Querida Mami,
+
+Feliz Navidad. Gracias por cuidarme todos los días y por quererme tanto. Me gusta cuando estamos juntos y cuando me ayudas con todo. Gracias por los abrazos y por hacerme sentir seguro. Te quiero muchísimo.
+
+Con cariño,
+Gabriel",
+      Papi: "Querido Papi,
+
+Feliz Navidad. Gracias por estar conmigo siempre y por enseñarme muchas cosas. Me gusta cuando hablamos y cuando pasamos tiempo juntos. Gracias por apoyarme. Te quiero mucho.
+
+Con cariño,
+Gabriel",
+      Daniela: "Querida Daniela,
+
+Feliz Navidad. Gracias por ser tan buena conmigo y por los momentos divertidos que compartimos. Me gusta mucho pasar tiempo contigo y reírnos.
+
+Con cariño,
+Gabriel",
+      Daniel: "Querido Daniel,
+
+Feliz Navidad. Espero que la pases muy bien y que estés feliz. Gracias por los buenos momentos. Te deseo un año muy bonito.
+
+Con cariño,
+Gabriel",
+      Abuelito: "Querido Abuelito,
+
+Feliz Navidad. Gracias por tu cariño y por contarme historias. Me gusta escucharte y aprender de ti. Gracias por cuidarme siempre.
+
+Con cariño,
+Gabriel",
+      Consue: "Querida Consue,
+
+Feliz Navidad. Gracias por ser tan amable y cariñosa conmigo. Me gusta mucho cuando estamos juntos en familia.
+
+Con cariño,
+Gabriel",
+      Jose: "Querido Jose,
+
+Feliz Navidad. Gracias por los buenos momentos y por estar presente. Te deseo un año lleno de cosas buenas y alegrías.
+
+Con cariño,
+Gabriel",
+      Lina: "Querida Lina,
+
+Feliz Navidad. Me gusta mucho cuando estamos todos juntos y compartimos. Espero que la pases muy bonito y con mucha alegría.
+
+Con cariño,
+Gabriel",
+      Juli: "Querida Juli,
+
+Feliz Navidad. Gracias por ser tan divertida y por hacerme reír. Me gusta mucho pasar tiempo contigo.
+
+Con cariño,
+Gabriel",
+      Herbi: "Querido Herbi,
+
+Feliz Navidad. Gracias por estar y por los momentos compartidos. Te deseo un año tranquilo y lleno de cosas buenas.
+
+Con cariño,
+Gabriel",
+      Pablo: "Querido Pablo,
+
+Feliz Navidad. Me gusta mucho cuando nos divertimos y compartimos momentos juntos. Espero que la pases muy bien.
+
+Con cariño,
+Gabriel",
+      Pao: "Querida Pao,
+
+Feliz Navidad. Gracias por ser tan linda conmigo. Espero que tengas días felices y momentos muy bonitos con la familia.
+
+Con cariño,
+Gabriel",
     };
 
     function openLetter(name) {
@@ -271,6 +351,19 @@
 
     function closeLetter() {
       document.getElementById('modal').style.display = 'none';
+    }
+
+    function enterVillegas() {
+      document.getElementById('familySelect').style.display = 'none';
+    }
+
+    function enterRojas() {
+      document.getElementById('familySelect').style.display = 'none';
+      document.getElementById('rojasView').style.display = 'flex';
+    }
+
+    function closeRojas() {
+      document.getElementById('rojasView').style.display = 'none';
     }
   </script>
 </body>
