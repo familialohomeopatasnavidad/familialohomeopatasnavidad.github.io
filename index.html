@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cartas de Navidad Familiares</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -17,7 +14,6 @@
       color: #0f2a44;
       min-height: 100vh;
     }
-
     .lock-screen {
       position: fixed;
       inset: 0;
@@ -27,7 +23,6 @@
       background: radial-gradient(circle at top, #e3f4ff, #b9e3ff 50%, #8ccfff);
       z-index: 3000;
     }
-
     .lock-card {
       background: #ffffffee;
       padding: 40px 35px;
@@ -37,13 +32,11 @@
       text-align: center;
       box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     }
-
     .lock-card h2 {
       margin-top: 0;
       font-family: 'Playfair Display', serif;
       color: #2b6cb0;
     }
-
     .lock-card input {
       width: 100%;
       padding: 12px;
@@ -52,7 +45,6 @@
       border: 1px solid #ccc;
       font-size: 1rem;
     }
-
     .lock-card button {
       margin-top: 18px;
       padding: 12px 20px;
@@ -63,37 +55,11 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
-    .error {
-      color: #c53030;
-      font-size: 0.9rem;
-      margin-top: 10px;
-      display: none;
-    }
-
-    header {
-      text-align: center;
-      padding: 70px 20px 40px;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    header p {
-      margin-top: 12px;
-      font-size: 1.15rem;
-    }
-
-    .divider {
-      width: 120px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #ffffff, transparent);
-      margin: 25px auto 0;
-    }
-
+    .error { color: #c53030; font-size: 0.9rem; margin-top: 10px; display: none; }
+    header { text-align: center; padding: 70px 20px 40px; }
+    header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+    header p { margin-top: 12px; font-size: 1.15rem; }
+    .divider { width: 120px; height: 4px; background: linear-gradient(90deg, transparent, #ffffff, transparent); margin: 25px auto 0; }
     .names {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -102,7 +68,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .name-card {
       background: #ffffffcc;
       border-radius: 22px;
@@ -111,14 +76,12 @@
       cursor: pointer;
       box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     }
-
     .name-card h2 {
       margin: 0;
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       color: #2b6cb0;
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -129,7 +92,6 @@
       padding: 20px;
       z-index: 2000;
     }
-
     .modal-content {
       background: #ffffff;
       max-width: 650px;
@@ -138,31 +100,23 @@
       padding: 42px 38px;
       position: relative;
     }
-
-    .close {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      font-size: 1.6rem;
-      cursor: pointer;
-    }
+    .close { position: absolute; top: 18px; right: 22px; font-size: 1.6rem; cursor: pointer; }
   </style>
 </head>
-
 <body>
 
-<!-- PASSWORD -->
+<!-- Password -->
 <div class="lock-screen" id="lockScreen">
   <div class="lock-card">
     <h2>🎄 Cartas de Navidad ⛄</h2>
-    <p>Escribe la contraseña para entrar</p>
+    <p>Escribe la contrasena para entrar</p>
     <input type="password" id="passwordInput" />
-    <button onclick="checkPassword()">Entrar</button>
-    <div class="error" id="error">Contraseña incorrecta</div>
+    <button id="enterBtn">Entrar</button>
+    <div class="error" id="error">Contrasena incorrecta</div>
   </div>
 </div>
 
-<!-- FAMILY SELECT -->
+<!-- Family select -->
 <div class="lock-screen" id="familySelect" style="display:none;">
   <div class="lock-card">
     <h2>Elige la familia</h2>
@@ -171,16 +125,16 @@
   </div>
 </div>
 
-<!-- FAMILIA ROJAS -->
+<!-- Familia Rojas -->
 <div class="lock-screen" id="rojasView" style="display:none; flex-direction:column;">
   <h2>Familia Rojas</h2>
-  <img src="family-tree.png" style="max-width:90%; border-radius:20px;" />
-  <button onclick="closeRojas()" style="margin-top:20px;">Volver</button>
+  <img src="family-tree.png" alt="Arbol familia Rojas" style="max-width:90%; border-radius:20px;" />
+  <button onclick="closeRojas()">Volver</button>
 </div>
 
 <header>
   <h1>Cartas de Navidad</h1>
-  <p>Un pequeño detalle hecho con cariño</p>
+  <p>Un pequeno detalle hecho con carino</p>
   <div class="divider"></div>
 </header>
 
@@ -189,6 +143,15 @@
   <div class="name-card" onclick="openLetter('Papi')"><h2>Papi</h2></div>
   <div class="name-card" onclick="openLetter('Daniela')"><h2>Daniela</h2></div>
   <div class="name-card" onclick="openLetter('Daniel')"><h2>Daniel</h2></div>
+  <div class="name-card" onclick="openLetter('Abuelito')"><h2>Abuelito</h2></div>
+  <div class="name-card" onclick="openLetter('Abuelita')"><h2>Abuelita</h2></div>
+  <div class="name-card" onclick="openLetter('Consue')"><h2>Consue</h2></div>
+  <div class="name-card" onclick="openLetter('Jose')"><h2>Jose</h2></div>
+  <div class="name-card" onclick="openLetter('Lina')"><h2>Lina</h2></div>
+  <div class="name-card" onclick="openLetter('Juli')"><h2>Juli</h2></div>
+  <div class="name-card" onclick="openLetter('Herbi')"><h2>Herbi</h2></div>
+  <div class="name-card" onclick="openLetter('Pablo')"><h2>Pablo</h2></div>
+  <div class="name-card" onclick="openLetter('Pao')"><h2>Pao</h2></div>
 </section>
 
 <div class="modal" id="modal">
@@ -200,48 +163,71 @@
 </div>
 
 <script>
-const PASSWORD = "ContraseñaNavidad20";
+const PASSWORD = 'ContrasenaNavidad20';
 
 function checkPassword() {
-  const input = document.getElementById("passwordInput").value;
+  const inputEl = document.getElementById('passwordInput');
+  const errorEl = document.getElementById('error');
+  if (!inputEl) return;
+  const input = inputEl.value;
   if (input === PASSWORD) {
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("familySelect").style.display = "flex";
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('familySelect').style.display = 'flex';
+    errorEl.style.display = 'none';
   } else {
-    document.getElementById("error").style.display = "block";
+    errorEl.style.display = 'block';
   }
 }
 
 function enterVillegas() {
-  document.getElementById("familySelect").style.display = "none";
+  document.getElementById('familySelect').style.display = 'none';
 }
 
 function enterRojas() {
-  document.getElementById("familySelect").style.display = "none";
-  document.getElementById("rojasView").style.display = "flex";
+  document.getElementById('familySelect').style.display = 'none';
+  document.getElementById('rojasView').style.display = 'flex';
 }
 
 function closeRojas() {
-  document.getElementById("rojasView").style.display = "none";
+  document.getElementById('rojasView').style.display = 'none';
 }
 
+// Use template literals to avoid invalid tokens from line breaks
 const letters = {
-  Mami: "Querida Mami,\n\nFeliz Navidad. Te quiero mucho.\n\nGabriel",
-  Papi: "Querido Papi,\n\nFeliz Navidad. Gracias por todo.\n\nGabriel",
-  Daniela: "Querida Daniela,\n\nFeliz Navidad.\n\nGabriel",
-  Daniel: "Querido Daniel,\n\nFeliz Navidad.\n\nGabriel"
+  Mami: `Querida Mami,\n\nFeliz Navidad. Gracias por cuidarme siempre. Te quiero muchisimo.\n\nGabriel`,
+  Papi: `Querido Papi,\n\nFeliz Navidad. Gracias por todo lo que haces por mi. Te quiero mucho.\n\nGabriel`,
+  Daniela: `Querida Daniela,\n\nFeliz Navidad. Gracias por ser tan buena conmigo.\n\nGabriel`,
+  Daniel: `Querido Daniel,\n\nFeliz Navidad. Gracias por los momentos divertidos.\n\nGabriel`,
+  Abuelito: `Querido Abuelito,\n\nFeliz Navidad. Gracias por tus historias y tu carino.\n\nGabriel`,
+  Abuelita: `Querida Abuelita,\n\nFeliz Navidad. Gracias por tu amor y tus abrazos.\n\nGabriel`,
+  Consue: `Querida Consue,\n\nFeliz Navidad. Gracias por tu carino.\n\nGabriel`,
+  Jose: `Querido Jose,\n\nFeliz Navidad. Te deseo lo mejor siempre.\n\nGabriel`,
+  Lina: `Querida Lina,\n\nFeliz Navidad. Gracias por tu alegria.\n\nGabriel`,
+  Juli: `Querida Juli,\n\nFeliz Navidad. Espero que tengas un ano increible.\n\nGabriel`,
+  Herbi: `Querido Herbi,\n\nFeliz Navidad. Gracias por los buenos momentos.\n\nGabriel`,
+  Pablo: `Querido Pablo,\n\nFeliz Navidad. Espero que la pases muy bien.\n\nGabriel`,
+  Pao: `Querida Pao,\n\nFeliz Navidad. Te mando un abrazo grande.\n\nGabriel`
 };
 
 function openLetter(name) {
-  document.getElementById("letter-title").innerText = "Carta para " + name;
-  document.getElementById("letter-body").innerText = letters[name];
-  document.getElementById("modal").style.display = "flex";
+  document.getElementById('letter-title').innerText = 'Carta para ' + name;
+  document.getElementById('letter-body').innerText = letters[name] || '';
+  document.getElementById('modal').style.display = 'flex';
 }
 
 function closeLetter() {
-  document.getElementById("modal").style.display = "none";
+  document.getElementById('modal').style.display = 'none';
 }
-</script>
 
+// Robust event wiring
+window.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('enterBtn');
+  const input = document.getElementById('passwordInput');
+  if (btn) btn.addEventListener('click', checkPassword);
+  if (input) input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
 </body>
 </html>
